@@ -7,11 +7,12 @@
 const int	CUfoBoss::m_width				= 384;
 const int	CUfoBoss::m_height				= 252;
 const float CUfoBoss::m_radius				= 126.0f;
-const int	CUfoBoss::m_max_life			= 1999;
+const int	CUfoBoss::m_max_life = 2;//1999;
 const int	CUfoBoss::m_random_interval		= 8;
 const int	CUfoBoss::m_cercle_interval		= 240;
 const float CUfoBoss::m_move_speed			= 1.0f;
 const float CUfoBoss::m_move_switch_point	= 0.0f;
+const int	CUfoBoss::m_spot_light_interval = 5;
 
 /*!
  *	コンストラクタ
@@ -41,6 +42,7 @@ Initialize(const vivid::Vector2& position)
 	m_Velocity.x = m_move_speed;
 	m_Velocity.y = m_move_speed;
 	m_FireTime = m_random_interval;
+	m_SpotLightTimer = 0;
 	m_AttackPattern = ATTACK_PATTERN::RANDOM;
 }
 
@@ -142,6 +144,22 @@ void
 CUfoBoss::
 Dead()
 {
-	CSoundManager::GetInstance().Play(SOUND_ID::BOSS_DESTORY, false);
-	m_ActiveFlag = false;
+	static int count = 0;
+
+	if (++m_SpotLightTimer > m_spot_light_interval)
+	{
+		m_SpotLightTimer = 0;
+
+		CEffectManager& effect = CEffectManager::GetInstance();
+		float angle = rand() % 360;
+		effect.Create(EFFECT_ID::BOSS_SPOT_LIGHT, GetCenterPosition(), 0xffffffff, DEG_TO_RAD(angle));
+
+		++count;
+	}
+
+	if(count > 10)
+	{
+		CSoundManager::GetInstance().Play(SOUND_ID::BOSS_DESTORY, false);
+		m_ActiveFlag = false;
+	}
 }

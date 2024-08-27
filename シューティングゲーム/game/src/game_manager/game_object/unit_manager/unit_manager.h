@@ -146,8 +146,10 @@ private:
 	// ユニットリスト型
 	using UNIT_LIST = list<IUnit*>;
 
-	static const float	m_dummy_length;	//!< 最短距離計算用ダミーデータ
-	UNIT_LIST			m_UnitList;		//!< ユニットリスト
-	int					m_CreateTimer;	//!< 生成時間
-	UFO_TABLE			m_UfoTable;		//!< UFOテーブルリスト
+	static const float	m_dummy_length;			//!< 最短距離計算用ダミーデータ
+
+	UNIT_LIST			m_UnitList;				//!< ユニットリスト
+	int					m_CreateTimer;			//!< 生成時間
+	UFO_TABLE			m_UfoTable;				//!< UFOテーブルリスト
+
 };

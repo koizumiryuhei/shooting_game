@@ -40,8 +40,9 @@ private:
 	static const float	m_move_speed;		//!< 移動速度
 	static const float	m_accelerator;		//!< 加速度
 	static const float	m_max_accelerator;	//!< 最大加速度
+	static const float	m_max_create_length;//!< 最長生成
 
-	vivid::Vector2		m_PlayerPosition;	//!< プレイヤーの位置
 	vivid::Vector2		m_Velocity;			//!< 速度
+	vivid::Vector2		m_Accelerator;		//!< 加速度
 
 };

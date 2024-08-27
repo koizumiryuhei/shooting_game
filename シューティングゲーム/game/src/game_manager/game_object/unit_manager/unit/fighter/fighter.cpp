@@ -20,6 +20,7 @@ const vivid::Vector2    CFighter::m_start_position              = vivid::Vector2
 const float             CFighter::m_move_friction               = 0.975f;
 const float             CFighter::m_max_move_accelerator        = 0.25f;
 const float             CFighter::m_move_accelerator            = 0.05f;
+const float             CFighter::m_create_effect_length        = 2.5f;
 const int               CFighter::m_max_fire_time               = 10;
 const int               CFighter::m_max_life                    = 5;
 const int               CFighter::m_nbullet_fire_interval       = 10;
@@ -158,6 +159,8 @@ Appear(void)
 {
     Move( );
 
+    Effect();
+
     if( m_Position.y < (float)vivid::WINDOW_HEIGHT * 0.8f )
     {
         m_Velocity = vivid::Vector2( 0.0f, 0.0f );
@@ -182,6 +185,8 @@ Attack(void)
     Control();
 
     Move();
+
+    Effect();
 
     CheckMoveArea();
 
@@ -291,15 +296,29 @@ Fire( void )
     {
         if (++m_HBulletFireTimer > m_charge_shot_time)
         {
+            CEffectManager& effect = CEffectManager::GetInstance();
+
             if (m_HBulletFireTimer % 12 == 0)
-                CEffectManager::GetInstance().Create(EFFECT_ID::CHARGE_EFFECT, m_Position, 0xff00afff, 0.0f);
+                effect.Create(EFFECT_ID::CHARGE_EFFECT, m_Position, 0xff00afff, 0.0f);
+
+            if(m_HBulletFireTimer % 8 == 0)
+            {
+                float length = (float)(rand() % 50 + 10);
+                float angle = (float)(rand() % 360);
+
+                vivid::Vector2 position;
+                position.x = GetCenterPosition().x + cos(angle) * length;
+                position.y = GetCenterPosition().y + sin(angle) * length;
+
+                effect.Create(EFFECT_ID::CHARGE_PARTICLE, position, 0xff88aaff, 0.0f);
+            }
         }
     }
-    else if (vivid::keyboard::Released(vivid::keyboard::KEY_ID::X))
+    else if (vivid::keyboard::Released(vivid::keyboard::KEY_ID::X) && m_HBulletFireTimer > m_charge_shot_time)
     {
+        m_HBulletFireTimer = 0;
         bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f, m_height), DEG_TO_RAD(210.0f), 10.0f);
         bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f * 2.0f, m_height), DEG_TO_RAD(330.0f), 10.0f);
-        m_HBulletFireTimer = 0;
     }
 }
 
@@ -355,5 +374,18 @@ CheckMoveArea( void )
         m_Position.y = h;
 
         m_Velocity.y *= -1.0f;
+    }
+}
+
+/*!
+ *  軌跡エフェクト
+ */
+void 
+CFighter::
+Effect(void)
+{
+    if(m_Velocity.Length() > m_create_effect_length)
+    {
+        CEffectManager::GetInstance().Create(EFFECT_ID::TRAFECTORY, m_Position, (m_LightColor - 0x88000000), 0.0f);
     }
 }

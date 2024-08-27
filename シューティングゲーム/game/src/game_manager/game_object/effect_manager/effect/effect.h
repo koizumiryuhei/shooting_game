@@ -2,6 +2,7 @@
 
 #include "vivid.h"
 #include "effect_id.h"
+#include "../../../../utility/utility.h"
 
 /*!
  *	@brief	エフェクト基底クラス

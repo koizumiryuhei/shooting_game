@@ -107,6 +107,11 @@ private:
      */
     void        CheckMoveArea( void );
 
+    /*!
+     *  @brief      軌跡エフェクト
+     */
+    void        Effect( void );
+
     static const int                m_width;                        //!< 幅
     static const int                m_height;                       //!< 高さ
     static const float              m_radius;                       //!< 半径
@@ -114,6 +119,7 @@ private:
     static const float              m_move_friction;                //!< 移動用減速率
     static const float              m_max_move_accelerator;         //!< 移動時の加速度
     static const float              m_move_accelerator;             //!< 移動時の加速度
+    static const float              m_create_effect_length;         //!< エフェクトを出す基準の大きさ
     static const int                m_max_fire_time;                //!< 発射時間
     static const int                m_max_life;                     //!< 最大ライフ
     static const int                m_nbullet_fire_interval;        //!< 通常弾発射間隔
