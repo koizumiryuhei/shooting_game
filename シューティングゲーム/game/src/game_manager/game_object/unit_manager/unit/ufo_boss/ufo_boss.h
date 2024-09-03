@@ -69,9 +69,12 @@ private:
 	static const float	m_move_speed;			//!< 移動速度
 	static const float	m_move_switch_point;	//!< 移動切り替え地点
 	static const int	m_spot_light_interval;	//!< スポットライト生成間隔
+	static const int	m_delete_time;			//!< 消滅時間
 
 	int					m_FireTime;				//!< 攻撃タイマー
 	int					m_SpotLightTimer;		//!< スポットライトタイマー
+	int					m_SpotLightCount;		//!< スポットライト生成数
+	int					m_DeleteTimer;			//!< 消滅タイマー1
 	ATTACK_PATTERN		m_AttackPattern;		//!< 攻撃パターン
 
 };

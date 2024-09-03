@@ -13,6 +13,7 @@ const int	CUfoBoss::m_cercle_interval		= 240;
 const float CUfoBoss::m_move_speed			= 1.0f;
 const float CUfoBoss::m_move_switch_point	= 0.0f;
 const int	CUfoBoss::m_spot_light_interval = 5;
+const int	CUfoBoss::m_delete_time			= 4 * 60;
 
 /*!
  *	コンストラクタ
@@ -43,6 +44,8 @@ Initialize(const vivid::Vector2& position)
 	m_Velocity.y = m_move_speed;
 	m_FireTime = m_random_interval;
 	m_SpotLightTimer = 0;
+	m_SpotLightCount = 0;
+	m_DeleteTimer = 0;
 	m_AttackPattern = ATTACK_PATTERN::RANDOM;
 }
 
@@ -144,21 +147,21 @@ void
 CUfoBoss::
 Dead()
 {
-	static int count = 0;
-
-	if (++m_SpotLightTimer > m_spot_light_interval)
+	if (++m_SpotLightTimer > m_spot_light_interval && !(m_SpotLightCount > 15))
 	{
 		m_SpotLightTimer = 0;
 
 		CEffectManager& effect = CEffectManager::GetInstance();
 		float angle = rand() % 360;
+
 		effect.Create(EFFECT_ID::BOSS_SPOT_LIGHT, GetCenterPosition(), 0xffffffff, DEG_TO_RAD(angle));
 
-		++count;
+		++m_SpotLightCount;
 	}
 
-	if(count > 10)
+	if(++m_DeleteTimer > m_delete_time)
 	{
+		CEffectManager::GetInstance().Delete(EFFECT_ID::BOSS_SPOT_LIGHT);
 		CSoundManager::GetInstance().Play(SOUND_ID::BOSS_DESTORY, false);
 		m_ActiveFlag = false;
 	}

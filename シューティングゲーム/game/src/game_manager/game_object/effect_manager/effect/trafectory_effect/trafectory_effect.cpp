@@ -6,7 +6,7 @@ const int CTrafectoryEffect::m_fade_speed = 5;
 
 CTrafectoryEffect::
 CTrafectoryEffect()
-	: IEffect(m_width, m_height)
+	: IEffect(EFFECT_ID::TRAFECTORY, m_width, m_height)
 {
 }
 
@@ -26,16 +26,7 @@ void
 CTrafectoryEffect::
 Update()
 {
-	int alpha = (m_Color & 0xff000000) >> 24;
-	alpha -= m_fade_speed;
-
-	if (alpha < 0)
-	{
-		alpha = 0;
-		m_ActiveFlag = false;
-	}
-
-	m_Color = (alpha << 24) | (m_Color & 0x00ffffff);
+	FadeOut(m_fade_speed);
 }
 
 void 

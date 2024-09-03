@@ -3,6 +3,8 @@
 // エフェクトID
 enum class EFFECT_ID
 {
+	DUMMY,				//!< ダミー
+
 	TRAFECTORY,			//!< 軌跡エフェクト
 	DESTORY,			//!< 撃破エフェクト
 	HIT,				//!< ヒットエフェクト

@@ -19,7 +19,7 @@ public:
 	/*!
 	 *	@brief	コンストラクタ
 	 */
-	IEffect(int width, int height);
+	IEffect(EFFECT_ID id, int width, int height);
 
 	/*!
 	 *	@brief	デストラクタ
@@ -66,7 +66,21 @@ public:
 	 */
 	void SetActive(bool active);
 
+	/*!
+	 *	@brief	識別番号取得
+	 */
+	EFFECT_ID GetID() { return m_id; }
+
 protected:
+
+	/*!
+	 *	@brief	フェードアウト
+	 * 
+	 *	@param[in]	speed	フェード速度
+	 */
+	void FadeOut(int speed);
+
+	const EFFECT_ID m_id;			//!< 識別番号
 
 	int				m_Width;		//!< 幅
 	int				m_Height;		//!< 高さ

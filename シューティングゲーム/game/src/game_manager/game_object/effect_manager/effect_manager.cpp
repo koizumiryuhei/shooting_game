@@ -4,6 +4,7 @@
 #include "effect/charge_particle/charge_particle.h"
 #include "effect/trafectory_effect/trafectory_effect.h"
 #include "effect/boss_spot_light/boss_spot_light.h"
+#include "effect//life_effect/life_effect.h"
 
 CEffectManager& 
 CEffectManager::
@@ -99,7 +100,7 @@ Create(EFFECT_ID id, const vivid::Vector2& pos, unsigned int color, float rotati
 	case EFFECT_ID::DAMAGE:				break;
 	case EFFECT_ID::HOMING:				break;
 	case EFFECT_ID::AURA:				break;
-	case EFFECT_ID::LIFE:				break;
+	case EFFECT_ID::LIFE:				effect = new CLifeEffect();			break;
 	case EFFECT_ID::CHARGE_PARTICLE:	effect = new CChargeParticle();		break;
 	case EFFECT_ID::CHARGE_EFFECT:		effect = new CChargeEffect();		break;
 	case EFFECT_ID::EMERGENCY:			break;
@@ -113,4 +114,31 @@ Create(EFFECT_ID id, const vivid::Vector2& pos, unsigned int color, float rotati
 	effect->Initialize(pos, color, rotation);
 
 	m_EffectList.push_back(effect);
+}
+
+void 
+CEffectManager::
+Delete(EFFECT_ID id)
+{
+	if (m_EffectList.empty())return;
+
+	EFFECT_LIST::iterator it = m_EffectList.begin();
+
+	while (it != m_EffectList.end())
+	{
+		IEffect* effect = (*it);
+
+		if (effect->GetID() == id)
+		{
+			effect->Finalize();
+
+			delete effect;
+
+			it = m_EffectList.erase(it);
+
+			continue;
+		}
+
+		++it;
+	}
 }

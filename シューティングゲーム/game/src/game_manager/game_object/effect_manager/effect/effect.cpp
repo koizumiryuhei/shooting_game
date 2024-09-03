@@ -2,7 +2,8 @@
 
 IEffect::
 IEffect()
-	: m_Width(0)
+	: m_id(EFFECT_ID::DUMMY)
+	, m_Width(0)
 	, m_Height(0)
 	, m_Position(vivid::Vector2::ZERO)
 	, m_Color(0xffffffff)
@@ -15,8 +16,9 @@ IEffect()
 }
 
 IEffect::
-IEffect(int width, int height)
-	: m_Width(width)
+IEffect(EFFECT_ID id, int width, int height)
+	: m_id(id)
+	, m_Width(width)
 	, m_Height(height)
 	, m_Position(vivid::Vector2::ZERO)
 	, m_Color(0xffffffff)
@@ -87,4 +89,20 @@ IEffect::
 SetActive(bool active)
 {
 	m_ActiveFlag = active;
+}
+
+void 
+IEffect::
+FadeOut(int speed)
+{
+	int alpha = (m_Color & 0xff000000) >> 24;
+	alpha -= speed;
+
+	if (alpha < 0)
+	{
+		alpha = 0;
+		m_ActiveFlag = false;
+	}
+
+	m_Color = (alpha << 24) | (m_Color & 0x00ffffff);
 }

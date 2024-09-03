@@ -7,7 +7,7 @@ const float CChargeEffect::m_scale_speed	= 0.1f;
 
 CChargeEffect::
 CChargeEffect()
-	: IEffect(m_width, m_height)
+	: IEffect(EFFECT_ID::CHARGE_EFFECT, m_width, m_height)
 {
 }
 
@@ -29,16 +29,8 @@ Update()
 {
 	m_Scale.x += m_scale_speed;
 	m_Scale.y += m_scale_speed;
-	int alpha = (m_Color & 0xff000000) >> 24;
-	alpha -= m_fade_speed;
-
-	if (alpha < 0)
-	{
-		alpha = 0;
-		m_ActiveFlag = false;
-	}
-
-	m_Color = (alpha << 24) | (m_Color & 0x00ffffff);
+	
+	FadeOut(m_fade_speed);
 }
 
 void 

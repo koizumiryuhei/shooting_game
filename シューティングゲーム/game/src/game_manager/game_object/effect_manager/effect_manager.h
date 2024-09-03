@@ -43,6 +43,11 @@ public:
 	 */
 	void Create(EFFECT_ID id, const vivid::Vector2& pos, unsigned int color, float rotation);
 
+	/*!
+	 *	@brief	エフェクト削除
+	 */
+	void Delete(EFFECT_ID id);
+
 private:
 
 	/*!

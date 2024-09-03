@@ -34,9 +34,11 @@ public:
 
 private:
 
-	static const int	m_width;
-	static const int	m_height;
+	static const int			m_width;
+	static const int			m_height;
+	static const int			m_color_table_count;
+	static const unsigned int	m_color_table[];
 
-	float				m_RotationSpeed;
+	float						m_RotationSpeed;
 
 };

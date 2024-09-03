@@ -1,6 +1,5 @@
 #pragma once
 
-#include "vivid.h"
 #include "../effect.h"
 
 class CTrafectoryEffect : public IEffect

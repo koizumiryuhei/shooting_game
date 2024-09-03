@@ -1,5 +1,6 @@
 #include "fighter_life_gauge.h"
 #include "../../unit_manager/unit_manager.h"
+#include "../../effect_manager/effect_manager.h"
 
 const int				CFighterLifeGauge::m_width		= 150;
 const int				CFighterLifeGauge::m_height		= 10;
@@ -35,13 +36,19 @@ Update()
 	float rate = 0.0f;
 
 	if (fighter)
+	{
 		rate = (float)fighter->GetLife() / (float)fighter->GetMaxLife();
+	}
 
 	int life = (int)(rate * (float)m_width);
 
 	// ƒ‰ƒCƒt‚ªŒ¸‚Á‚½•ª‚Ü‚ÅŒ¸‚ç‚·
 	if (m_Rect.right > life)
+	{
 		m_Rect.right -= m_bar_speed;
+
+		CEffectManager::GetInstance().Create(EFFECT_ID::LIFE, vivid::Vector2(m_position.x + m_Rect.right, m_position.y), 0xff0000ff, 0.0f);
+	}
 }
 
 void 
