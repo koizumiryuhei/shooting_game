@@ -47,8 +47,11 @@ private:
 	static const float	m_max_speed;		//!< 最高速度
 	static const float	m_homing_angle;		//!< ホーミング角度
 	static const int	m_max_homing_time;	//!< ホーミングする最大時間
+	static const int	m_effect_interval;	//!< エフェクト生成間隔
+
 	float				m_Speed;			//!< 速さ
 	float				m_Angle;			//!< 向き
 	int					m_HomingTime;		//!< ホーミングする時間1
+	int					m_EffectTimer;		//!< エフェクトタイマー
 
 };

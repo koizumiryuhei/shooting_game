@@ -4,7 +4,8 @@
 #include "effect/charge_particle/charge_particle.h"
 #include "effect/trafectory_effect/trafectory_effect.h"
 #include "effect/boss_spot_light/boss_spot_light.h"
-#include "effect//life_effect/life_effect.h"
+#include "effect/life_effect/life_effect.h"
+#include "effect/homing_effect/homing_effect.h"
 
 CEffectManager& 
 CEffectManager::
@@ -98,7 +99,7 @@ Create(EFFECT_ID id, const vivid::Vector2& pos, unsigned int color, float rotati
 	case EFFECT_ID::DESTORY:			break;
 	case EFFECT_ID::HIT:				break;
 	case EFFECT_ID::DAMAGE:				break;
-	case EFFECT_ID::HOMING:				break;
+	case EFFECT_ID::HOMING:				effect = new CHomingEffect();		break;
 	case EFFECT_ID::AURA:				break;
 	case EFFECT_ID::LIFE:				effect = new CLifeEffect();			break;
 	case EFFECT_ID::CHARGE_PARTICLE:	effect = new CChargeParticle();		break;

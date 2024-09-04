@@ -33,15 +33,16 @@ public:
 
 private:
 
-	static const int	m_width;
-	static const int	m_height;
-	static const int	m_one_rotation;
-	static const int	m_max_rotation;
-	static const int	m_min_rotation;
-	static const float	m_speed;
-	static const int	m_fade_speed;
+	static const int			m_width;
+	static const int			m_height;
+	static const int			m_one_rotation;
+	static const int			m_max_rotation;
+	static const int			m_min_rotation;
+	static const float			m_speed;
+	static const int			m_fade_speed;
+	static const std::string	m_file_name;	//!< ƒtƒ@ƒCƒ‹–¼
 
-	vivid::Vector2		m_Velocity;
-	float				m_RotationSpeed;
+	vivid::Vector2				m_Velocity;
+	float						m_RotationSpeed;
 
 };

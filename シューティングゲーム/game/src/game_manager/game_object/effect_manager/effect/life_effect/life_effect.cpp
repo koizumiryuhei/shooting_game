@@ -7,18 +7,25 @@ const int CLifeEffect::m_max_rotation = 10;
 const int CLifeEffect::m_min_rotation = 3;
 const float CLifeEffect::m_speed = 0.5f;
 const int CLifeEffect::m_fade_speed = 2;
+const std::string CLifeEffect::m_file_name = "data/life_particle.png";
 
-CLifeEffect::CLifeEffect()
+CLifeEffect::
+CLifeEffect()
 	: IEffect(EFFECT_ID::LIFE, m_width, m_height)
 {
 }
 
-CLifeEffect::~CLifeEffect()
+CLifeEffect::
+~CLifeEffect()
 {
 }
 
-void CLifeEffect::Initialize(const vivid::Vector2& position, unsigned int color, float rotation)
+void 
+CLifeEffect::
+Initialize(const vivid::Vector2& position, unsigned int color, float rotation)
 {
+	vivid::LoadTexture(m_file_name);
+
 	IEffect::Initialize(position, color, rotation);
 
 	float angle = DEG_TO_RAD(rand() % m_one_rotation);
@@ -28,7 +35,9 @@ void CLifeEffect::Initialize(const vivid::Vector2& position, unsigned int color,
 	m_RotationSpeed = DEG_TO_RAD((float)(rand() % m_max_rotation + m_min_rotation));
 }
 
-void CLifeEffect::Update()
+void 
+CLifeEffect::
+Update()
 {
 	m_Position += m_Velocity;
 
@@ -37,7 +46,9 @@ void CLifeEffect::Update()
 	FadeOut(m_fade_speed);
 }
 
-void CLifeEffect::Draw()
+void 
+CLifeEffect::
+Draw()
 {
-	vivid::DrawTexture("data/life_particle.png", m_Position, m_Color, m_Rect, m_Anchor, m_Scale, m_Rotation, vivid::ALPHABLEND::ADD);
+	vivid::DrawTexture(m_file_name, m_Position, m_Color, m_Rect, m_Anchor, m_Scale, m_Rotation, vivid::ALPHABLEND::ADD);
 }

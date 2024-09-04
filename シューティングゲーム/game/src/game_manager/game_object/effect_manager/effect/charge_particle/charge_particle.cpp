@@ -7,6 +7,7 @@ const int	CChargeParticle::m_fade_speed			= 8;
 const float CChargeParticle::m_move_speed			= 1.75f;
 const float CChargeParticle::m_accelerator			= 0.01f;
 const float CChargeParticle::m_max_create_length	= 50.0f;
+const std::string CChargeParticle::m_file_name		= "data/charge_particle.png";
 
 CChargeParticle::
 CChargeParticle()
@@ -23,6 +24,8 @@ void
 CChargeParticle::
 Initialize(const vivid::Vector2& position, unsigned int color, float rotation)
 {
+	vivid::LoadTexture(m_file_name);
+
 	IEffect::Initialize(position, color, rotation);
 
 	vivid::Vector2 player = CUnitManager::GetInstance().GetFighter()->GetCenterPosition();
@@ -49,5 +52,5 @@ void
 CChargeParticle::
 Draw()
 {
-	vivid::DrawTexture("data/charge_particle.png", m_Position, m_Color);
+	vivid::DrawTexture(m_file_name, m_Position, m_Color);
 }

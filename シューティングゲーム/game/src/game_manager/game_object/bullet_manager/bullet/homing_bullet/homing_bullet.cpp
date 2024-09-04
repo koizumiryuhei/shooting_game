@@ -2,6 +2,7 @@
 #include "../../../unit_manager/unit_manager.h"
 #include "../../../unit_manager/unit/unit.h"
 #include "../../../../../utility/utility.h"
+#include "../../../effect_manager/effect_manager.h"
 
 const int	CHomingBullet::m_width				= 32;
 const int	CHomingBullet::m_height				= 16;
@@ -10,12 +11,14 @@ const float CHomingBullet::m_accelerator		= 0.1f;
 const float CHomingBullet::m_max_speed			= 10.0f;
 const float	CHomingBullet::m_homing_angle		= 5.0f;
 const int	CHomingBullet::m_max_homing_time	= 60;
+const int	CHomingBullet::m_effect_interval	= 5;
 
 CHomingBullet::CHomingBullet()
 	: IBullet(m_width, m_height, m_radius)
 	, m_Speed(0.0f)
 	, m_Angle(0.0f)
 	, m_HomingTime(m_max_homing_time)
+	, m_EffectTimer(0)
 {
 }
 
@@ -27,9 +30,23 @@ void CHomingBullet::Initialize(UNIT_CATEGORY category, const vivid::Vector2& pos
 {
 	IBullet::Initialize(category, position, direction, speed);
 
-	m_Speed = speed;
-	m_Angle = direction;
-	m_HomingTime = m_max_homing_time;
+	m_Speed			= speed;
+	m_Angle			= direction;
+	m_HomingTime	= m_max_homing_time;
+	m_EffectTimer	= 0;
+
+	switch (category)
+	{
+	case UNIT_CATEGORY::UNKNOW:
+		m_Color = 0xffffffff;
+		break;
+	case UNIT_CATEGORY::FIGHTER:
+		m_Color = 0xff0000ff;
+		break;
+	case UNIT_CATEGORY::UFO:
+		m_Color = 0xffff0000;
+		break;
+	}
 }
 
 void CHomingBullet::Update()
@@ -60,6 +77,13 @@ void CHomingBullet::Update()
 	CheckArea();
 
 	m_Rotation = atan2(m_Velocity.y, m_Velocity.x);
+
+	if (++m_EffectTimer > m_effect_interval)
+	{
+		m_EffectTimer = 0;
+
+		CEffectManager::GetInstance().Create(EFFECT_ID::HOMING, m_Position, m_Color, m_Rotation);
+	}
 }
 
 void CHomingBullet::Draw()
