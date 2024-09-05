@@ -6,6 +6,8 @@
 #include "effect/boss_spot_light/boss_spot_light.h"
 #include "effect/life_effect/life_effect.h"
 #include "effect/homing_effect/homing_effect.h"
+#include "effect/hit_effect/hit_effect.h"
+#include "effect/emergency_effect/emergency_effect.h"
 
 CEffectManager& 
 CEffectManager::
@@ -97,14 +99,14 @@ Create(EFFECT_ID id, const vivid::Vector2& pos, unsigned int color, float rotati
 	{
 	case EFFECT_ID::TRAFECTORY:			effect = new CTrafectoryEffect();	break;
 	case EFFECT_ID::DESTORY:			break;
-	case EFFECT_ID::HIT:				break;
+	case EFFECT_ID::HIT:				effect = new CHitEffect();			break;
 	case EFFECT_ID::DAMAGE:				break;
 	case EFFECT_ID::HOMING:				effect = new CHomingEffect();		break;
 	case EFFECT_ID::AURA:				break;
 	case EFFECT_ID::LIFE:				effect = new CLifeEffect();			break;
 	case EFFECT_ID::CHARGE_PARTICLE:	effect = new CChargeParticle();		break;
 	case EFFECT_ID::CHARGE_EFFECT:		effect = new CChargeEffect();		break;
-	case EFFECT_ID::EMERGENCY:			break;
+	case EFFECT_ID::EMERGENCY:			effect = new CEmergencyEffect();	break;
 	case EFFECT_ID::BOSS_WHITE_EFFECT:	break;
 	case EFFECT_ID::BOSS_SPOT_LIGHT:	effect = new CBossSpotLight();		break;
 	case EFFECT_ID::BOSS_DESTORY:		break;

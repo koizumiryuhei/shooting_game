@@ -34,19 +34,6 @@ void CHomingBullet::Initialize(UNIT_CATEGORY category, const vivid::Vector2& pos
 	m_Angle			= direction;
 	m_HomingTime	= m_max_homing_time;
 	m_EffectTimer	= 0;
-
-	switch (category)
-	{
-	case UNIT_CATEGORY::UNKNOW:
-		m_Color = 0xffffffff;
-		break;
-	case UNIT_CATEGORY::FIGHTER:
-		m_Color = 0xff0000ff;
-		break;
-	case UNIT_CATEGORY::UFO:
-		m_Color = 0xffff0000;
-		break;
-	}
 }
 
 void CHomingBullet::Update()

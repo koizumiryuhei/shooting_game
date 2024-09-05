@@ -4,9 +4,9 @@ const int CLifeEffect::m_width = 8;
 const int CLifeEffect::m_height = 8;
 const int CLifeEffect::m_one_rotation = 360;
 const int CLifeEffect::m_max_rotation = 10;
-const int CLifeEffect::m_min_rotation = 3;
+const int CLifeEffect::m_min_rotation = 5;
 const float CLifeEffect::m_speed = 0.5f;
-const int CLifeEffect::m_fade_speed = 2;
+const int CLifeEffect::m_fade_speed = 5;
 const std::string CLifeEffect::m_file_name = "data/life_particle.png";
 
 CLifeEffect::

@@ -4,6 +4,8 @@
 #include "effect_id.h"
 #include "../../../../utility/utility.h"
 
+#define RAND_IN_360	rand() % 360
+
 /*!
  *	@brief	エフェクト基底クラス
  */
@@ -78,7 +80,7 @@ protected:
 	 * 
 	 *	@param[in]	speed	フェード速度
 	 */
-	void FadeOut(int speed);
+	void FadeOut(const int& speed);
 
 	const EFFECT_ID m_id;			//!< 識別番号
 

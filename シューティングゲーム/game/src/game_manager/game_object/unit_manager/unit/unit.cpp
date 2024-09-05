@@ -120,6 +120,12 @@ CheckHitBullet( IBullet* bullet )
     // “–‚½‚è”»’è
     if( v.Length() <= m_Radius + bullet->GetRadius() )
     {
+        CEffectManager& effect = CEffectManager::GetInstance();
+
+        effect.Create(EFFECT_ID::HIT, bullet->GetCenterPosition(), bullet->GetBulletColor(), 0.0f);
+        effect.Create(EFFECT_ID::HIT, bullet->GetCenterPosition(), bullet->GetBulletColor(), 0.0f);
+        effect.Create(EFFECT_ID::HIT, bullet->GetCenterPosition(), bullet->GetBulletColor(), 0.0f);
+
         bullet->SetActive( false );
 
         if( --m_Life <= 0 )

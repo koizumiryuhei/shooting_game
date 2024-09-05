@@ -47,6 +47,8 @@ Initialize(const vivid::Vector2& position)
 	m_SpotLightCount = 0;
 	m_DeleteTimer = 0;
 	m_AttackPattern = ATTACK_PATTERN::RANDOM;
+
+	CEffectManager::GetInstance().Create(EFFECT_ID::EMERGENCY, vivid::Vector2::ZERO, 0xffffffff, 0.0f);
 }
 
 /*!

@@ -93,7 +93,7 @@ SetActive(bool active)
 
 void 
 IEffect::
-FadeOut(int speed)
+FadeOut(const int& speed)
 {
 	int alpha = (m_Color & 0xff000000) >> 24;
 	alpha -= speed;
