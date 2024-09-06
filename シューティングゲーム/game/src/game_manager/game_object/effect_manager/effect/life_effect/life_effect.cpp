@@ -28,7 +28,7 @@ Initialize(const vivid::Vector2& position, unsigned int color, float rotation)
 
 	IEffect::Initialize(position, color, rotation);
 
-	float angle = DEG_TO_RAD(rand() % m_one_rotation);
+	float angle = DEG_TO_RAD(RAND_IN_360);
 	m_Velocity.x = cos(angle) * m_speed;
 	m_Velocity.y = sin(angle) * m_speed;
 

@@ -205,6 +205,15 @@ void
 CFighter::
 Dead(void)
 {
+    CEffectManager& effect = CEffectManager::GetInstance();
+
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+
     m_ActiveFlag = false;
 }
 

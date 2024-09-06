@@ -129,7 +129,12 @@ CheckHitBullet( IBullet* bullet )
         bullet->SetActive( false );
 
         if( --m_Life <= 0 )
+        {
             m_UnitState = UNIT_STATE::DEAD;
+
+            if (m_UnitID == UNIT_ID::UFO_BOSS)
+                effect.Create(EFFECT_ID::BOSS_WHITE_EFFECT, GetPosition(), 0xffffffff, 0.0f);
+        }
 
         return true;
     }
@@ -333,5 +338,16 @@ IUnit::
 Dead(void)
 {
     CSoundManager::GetInstance().Play(SOUND_ID::DESTORY, false);
+
+    CEffectManager& effect = CEffectManager::GetInstance();
+
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    effect.Create(EFFECT_ID::EXPLOSION_RING, GetCenterPosition(), 0xffffffff, 0.0f);
+
     m_ActiveFlag = false;
 }

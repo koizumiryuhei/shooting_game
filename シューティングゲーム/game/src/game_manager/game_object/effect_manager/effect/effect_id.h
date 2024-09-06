@@ -18,4 +18,6 @@ enum class EFFECT_ID
 	BOSS_WHITE_EFFECT,	//!< ボスホワイトエフェクト
 	BOSS_SPOT_LIGHT,	//!< ボススポットライト
 	BOSS_DESTORY,		//!< ボス撃破エフェクト
+	EXPLOSION_RING,		//!< リングエフェクト
+	BOSS_EXPLOSION_RING,//!< ボスリングエフェクト
 };

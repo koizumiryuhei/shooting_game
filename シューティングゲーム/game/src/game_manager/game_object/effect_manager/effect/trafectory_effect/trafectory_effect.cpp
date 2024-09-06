@@ -1,9 +1,10 @@
 #include "trafectory_effect.h"
 
-const int CTrafectoryEffect::m_width = 36;
-const int CTrafectoryEffect::m_height = 36;
-const int CTrafectoryEffect::m_fade_speed = 5;
-const std::string CTrafectoryEffect::m_file_name = "data/fighter_light_bloom.png";
+const int			CTrafectoryEffect::m_width		= 36;
+const int			CTrafectoryEffect::m_height		= 36;
+const int			CTrafectoryEffect::m_max_alpha	= 180;
+const int			CTrafectoryEffect::m_fade_speed = 5;
+const std::string	CTrafectoryEffect::m_file_name	= "data/fighter_light_bloom.png";
 
 CTrafectoryEffect::
 CTrafectoryEffect()

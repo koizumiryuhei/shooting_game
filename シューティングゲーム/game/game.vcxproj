@@ -171,6 +171,7 @@
     <ClCompile Include="src\game_manager\game_object\bullet_manager\bullet_manager.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\aura_effect\aura_effect.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\boss_destory_effect\boss_destory_effect.cpp" />
+    <ClCompile Include="src\game_manager\game_object\effect_manager\effect\boss_explosion_ring\boss_explosion_ring.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\boss_spot_light\boss_spot_light.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\boss_white_effect\boss_white_effect.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\charge_effect\charge_effect.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\destory_effect\destory_effect.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\effect.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\emergency_effect\emergency_effect.cpp" />
+    <ClCompile Include="src\game_manager\game_object\effect_manager\effect\explosion_ring\explosion_ring.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\hit_effect\hit_effect.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\homing_effect\homing_effect.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\life_effect\life_effect.cpp" />
@@ -219,6 +221,7 @@
     <ClInclude Include="src\game_manager\game_object\bullet_manager\bullet_manager.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\aura_effect\aura_effect.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\boss_destory_effect\boss_destory_effect.h" />
+    <ClInclude Include="src\game_manager\game_object\effect_manager\effect\boss_explosion_ring\boss_explosion_ring.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\boss_spot_light\boss_spot_light.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\boss_white_effect\boss_white_effect.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\charge_effect\charge_effect.h" />
@@ -228,6 +231,7 @@
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\effect.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\effect_id.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\emergency_effect\emergency_effect.h" />
+    <ClInclude Include="src\game_manager\game_object\effect_manager\effect\explosion_ring\explosion_ring.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\hit_effect\hit_effect.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\homing_effect\homing_effect.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\life_effect\life_effect.h" />

@@ -13,14 +13,15 @@ const int	CUfoBoss::m_cercle_interval		= 240;
 const float CUfoBoss::m_move_speed			= 1.0f;
 const float CUfoBoss::m_move_switch_point	= 0.0f;
 const int	CUfoBoss::m_spot_light_interval = 5;
-const int	CUfoBoss::m_delete_time			= 4 * 60;
+const int	CUfoBoss::m_creat_aura_interval = 20;
+const int	CUfoBoss::m_delete_time			= 6 * 60;
 
 /*!
  *	コンストラクタ
  */
 CUfoBoss::
 CUfoBoss()
-	: IUnit(m_width, m_height, m_radius, m_max_life, UNIT_CATEGORY::UFO, UNIT_ID::UFO_LARGE)
+	: IUnit(m_width, m_height, m_radius, m_max_life, UNIT_CATEGORY::UFO, UNIT_ID::UFO_BOSS)
 {
 }
 
@@ -45,6 +46,7 @@ Initialize(const vivid::Vector2& position)
 	m_FireTime = m_random_interval;
 	m_SpotLightTimer = 0;
 	m_SpotLightCount = 0;
+	m_CreatAuraTimer = 0;
 	m_DeleteTimer = 0;
 	m_AttackPattern = ATTACK_PATTERN::RANDOM;
 
@@ -74,6 +76,13 @@ void
 CUfoBoss::
 Attack()
 {
+	if (++m_CreatAuraTimer > m_creat_aura_interval)
+	{
+		m_CreatAuraTimer = 0;
+
+		CEffectManager::GetInstance().Create(EFFECT_ID::AURA, m_Position, 0xffff00ff, 0.0f);
+	}
+
 	m_AttackPattern = (ATTACK_PATTERN)((m_Life / 500) % 2);
 
 	switch (m_AttackPattern)
@@ -163,7 +172,21 @@ Dead()
 
 	if(++m_DeleteTimer > m_delete_time)
 	{
-		CEffectManager::GetInstance().Delete(EFFECT_ID::BOSS_SPOT_LIGHT);
+		CEffectManager& effect = CEffectManager::GetInstance();
+		effect.Delete(EFFECT_ID::BOSS_SPOT_LIGHT);
+		effect.Delete(EFFECT_ID::BOSS_WHITE_EFFECT);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		effect.Create(EFFECT_ID::BOSS_EXPLOSION_RING, GetCenterPosition(), 0xffffffff, 0.0f);
+
 		CSoundManager::GetInstance().Play(SOUND_ID::BOSS_DESTORY, false);
 		m_ActiveFlag = false;
 	}

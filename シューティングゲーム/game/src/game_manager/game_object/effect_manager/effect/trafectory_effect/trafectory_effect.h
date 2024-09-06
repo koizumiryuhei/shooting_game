@@ -35,6 +35,7 @@ private:
 
 	static const int			m_width;
 	static const int			m_height;
+	static const int			m_max_alpha;
 	static const int			m_fade_speed;
 	static const std::string	m_file_name;	//!< ƒtƒ@ƒCƒ‹–¼
 
