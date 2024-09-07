@@ -14,6 +14,7 @@
 #include "effect/boss_explosion_ring/boss_explosion_ring.h"
 #include "effect/boss_white_effect/boss_white_effect.h"
 #include "effect/aura_effect/aura_effect.h"
+#include "effect/damage_effect/damage_effect.h"
 
 CEffectManager& 
 CEffectManager::
@@ -106,7 +107,7 @@ Create(EFFECT_ID id, const vivid::Vector2& pos, unsigned int color, float rotati
 	case EFFECT_ID::TRAFECTORY:				effect = new CTrafectoryEffect();	break;
 	case EFFECT_ID::DESTORY:				effect = new CDestroyEffect();		break;
 	case EFFECT_ID::HIT:					effect = new CHitEffect();			break;
-	case EFFECT_ID::DAMAGE:					break;
+	case EFFECT_ID::DAMAGE:					effect = new CDamageEffect();		break;
 	case EFFECT_ID::HOMING:					effect = new CHomingEffect();		break;
 	case EFFECT_ID::AURA:					effect = new CAuraEffect();			break;
 	case EFFECT_ID::LIFE:					effect = new CLifeEffect();			break;

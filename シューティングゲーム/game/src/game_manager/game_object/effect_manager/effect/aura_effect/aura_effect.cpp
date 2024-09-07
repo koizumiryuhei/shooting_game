@@ -2,7 +2,7 @@
 
 const int			CAuraEffect::m_width		= 384;
 const int			CAuraEffect::m_height		= 384;
-const int			CAuraEffect::m_fade_speed	= 3;
+const int			CAuraEffect::m_fade_speed	= 2;
 const float			CAuraEffect::m_move_speed	= 0.8f;
 const std::string	CAuraEffect::m_file_name	= "data/aura_effect.png";
 
@@ -23,18 +23,18 @@ Initialize(const vivid::Vector2& position, unsigned int color, float rotation)
 {
 	vivid::LoadTexture(m_file_name);
 
-	int maxX = position.x + m_width / 2;
-	int maxY = position.y + m_height / 2;
-	int minX = position.x - m_width / 2;
-	int minY = position.y - m_width / 2;
+	int maxX = position.x + m_width / 3;
+	int maxY = position.y + m_height / 3;
+	int minX = position.x - m_width / 3;
+	int minY = position.y - m_height / 6;
 
 	float x = rand() % maxX + minX;
 	float y = rand() % maxY + minY;
 
 	IEffect::Initialize(position, color, rotation);
 
-	m_Position.x + x;
-	m_Position.y + y;
+	m_Position.x = x;
+	m_Position.y = y;
 }
 
 void 
