@@ -36,5 +36,5 @@ void
 CDamageEffect::
 Draw()
 {
-	vivid::DrawTexture(m_file_name, m_Position, m_Color, m_Rect, m_Anchor, m_Scale, m_Rotation, vivid::ALPHABLEND::ADD);
+	vivid::DrawTexture(m_file_name, m_Position, m_Color);//, m_Rect, m_Anchor, m_Scale, m_Rotation, vivid::ALPHABLEND::ADD);
 }
