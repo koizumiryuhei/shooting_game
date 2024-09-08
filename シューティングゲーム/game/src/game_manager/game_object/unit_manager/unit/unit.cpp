@@ -126,9 +126,6 @@ CheckHitBullet( IBullet* bullet )
         effect.Create(EFFECT_ID::HIT, bullet->GetCenterPosition(), bullet->GetBulletColor(), 0.0f);
         effect.Create(EFFECT_ID::HIT, bullet->GetCenterPosition(), bullet->GetBulletColor(), 0.0f);
 
-        if (m_UnitID == UNIT_ID::FIGHTER)
-            effect.Create(EFFECT_ID::DAMAGE, vivid::Vector2::ZERO, 0xffff0000, 0.0f);
-
         bullet->SetActive( false );
 
         if( --m_Life <= 0 )

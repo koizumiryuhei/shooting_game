@@ -96,6 +96,7 @@ IEffect::
 FadeOut(const int& speed)
 {
 	int alpha = (m_Color & 0xff000000) >> 24;
+
 	alpha -= speed;
 
 	if (alpha < 0)

@@ -2,7 +2,7 @@
 
 const int			CDamageEffect::m_width		= 480;
 const int			CDamageEffect::m_height		= 640;
-const int			CDamageEffect::m_fade_speed = 4;
+const int			CDamageEffect::m_fade_speed = 30;
 const std::string	CDamageEffect::m_file_name	= "data/white.png";
 
 CDamageEffect::
@@ -36,5 +36,5 @@ void
 CDamageEffect::
 Draw()
 {
-	vivid::DrawTexture(m_file_name, m_Position, m_Color);//, m_Rect, m_Anchor, m_Scale, m_Rotation, vivid::ALPHABLEND::ADD);
+	vivid::DrawTexture(m_file_name, m_Position, m_Color, m_Rect, m_Anchor, m_Scale, m_Rotation, vivid::ALPHABLEND::ADD);
 }
