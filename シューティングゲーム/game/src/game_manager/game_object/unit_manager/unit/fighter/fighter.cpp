@@ -12,6 +12,7 @@
 #include "fighter.h"
 #include "..\..\..\..\..\utility\utility.h"
 #include "../../../game_object.h"
+#include "fighter_option/fighter_option.h"
 
 const int               CFighter::m_width                       = 36;
 const int               CFighter::m_height                      = 36;
@@ -38,6 +39,8 @@ CFighter(void)
     , m_MoveAccelerator( 0.0f )
     , m_NBulletFireTimer( 0 )
     , m_InvincibleTime( 0 )
+    , m_Option1(nullptr)
+    , m_Option2(nullptr)
 {
 }
 
@@ -78,6 +81,12 @@ Update( void )
 {
     IUnit::Update( );
 
+    if (m_Option1)
+        m_Option1->Update();
+
+    if (m_Option2)
+        m_Option2->Update();
+
 #if _DEBUG
     if (vivid::keyboard::Trigger(vivid::keyboard::KEY_ID::I))
     {
@@ -104,6 +113,12 @@ Draw( void )
         vivid::DrawTexture("data\\fighter_light_bloom.png", m_Position, m_BloomColor, rect, anchor, scale, 0.0f, vivid::ALPHABLEND::ADD );
         vivid::DrawTexture("data\\fighter_light.png", m_Position, m_LightColor, rect, anchor, scale, 0.0f, vivid::ALPHABLEND::ADD );
     }
+
+    if (m_Option1)
+        m_Option1->Draw();
+
+    if (m_Option2)
+        m_Option2->Draw();
 }
 
 /*
@@ -113,6 +128,19 @@ void
 CFighter::
 Finalize( void )
 {
+    if(m_Option1)
+        m_Option1->Finalize();
+
+    delete m_Option1;
+
+    m_Option1 = nullptr;
+
+    if(m_Option2)
+        m_Option2->Finalize();
+
+    delete m_Option2;
+
+    m_Option2 = nullptr;
 }
 
 /*
@@ -171,6 +199,21 @@ Appear(void)
 
         m_InvincibleFlag = false;
 
+        m_Option1 = new CFighterOption();
+        m_Option2 = new CFighterOption();
+
+        if (m_Option1)
+        {
+            m_Option1->Initialize(m_start_position);
+            m_Option1->SetFollowTarget(this);
+        }
+
+        if (m_Option2)
+        {
+            m_Option2->Initialize(m_start_position);
+            m_Option2->SetFollowTarget(this);
+        }
+
         m_UnitState = UNIT_STATE::ATTACK;
     }
 }
@@ -209,12 +252,12 @@ Dead(void)
 {
     CEffectManager& effect = CEffectManager::GetInstance();
 
-    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-    effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+    const int destroy = 6;
+
+    for (int i = 0; i < destroy; ++i)
+        effect.Create(EFFECT_ID::DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+
+    effect.Create(EFFECT_ID::EXPLOSION_RING, GetCenterPosition(), 0xffffffff, 0.0f);
 
     m_ActiveFlag = false;
 }
@@ -295,6 +338,12 @@ Fire( void )
             bm.Create(m_Category, BULLET_ID::NORMAL, m_Position + vivid::Vector2( m_width / 3.0f * 2.0f, 0.0f ), DEG_TO_RAD( 270.0f ), 10.0f );
             bm.Create(m_Category, BULLET_ID::NORMAL, m_Position + vivid::Vector2( m_width / 3.0f, 0.0f ), DEG_TO_RAD( 260.0f ), 8.0f );
             bm.Create(m_Category, BULLET_ID::NORMAL, m_Position + vivid::Vector2( m_width / 3.0f * 2.0f, 0.0f ), DEG_TO_RAD( 280.0f ), 8.0f );
+
+            if (m_Option1)
+                m_Option1->Fire();
+
+            if (m_Option2)
+                m_Option2->Fire();
         }
     }
     else
@@ -328,8 +377,12 @@ Fire( void )
     else if (vivid::keyboard::Released(vivid::keyboard::KEY_ID::X) && m_HBulletFireTimer > m_charge_shot_time)
     {
         m_HBulletFireTimer = 0;
-        bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f, m_height), DEG_TO_RAD(210.0f), 10.0f);
-        bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f * 2.0f, m_height), DEG_TO_RAD(330.0f), 10.0f);
+        bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f, m_height), DEG_TO_RAD(35.0f), 5.0f);
+        bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f, m_height), DEG_TO_RAD(37.5f), 4.0f);
+        bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f, m_height), DEG_TO_RAD(40.0f), 3.0f);
+        bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f * 2.0f, m_height), DEG_TO_RAD(145.0f), 3.0f);
+        bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f * 2.0f, m_height), DEG_TO_RAD(147.5f), 4.0f);
+        bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f * 2.0f, m_height), DEG_TO_RAD(150.0f), 5.0f);
     }
 }
 

@@ -7,7 +7,7 @@ const int	CUfoMiddle::m_width			= 64;
 const int	CUfoMiddle::m_height		= 32;
 const float CUfoMiddle::m_radius		= 32.0f;
 const int	CUfoMiddle::m_max_life		= 20;
-const int	CUfoMiddle::m_fire_interval = 90;
+const int	CUfoMiddle::m_fire_interval = 180;
 const float CUfoMiddle::m_move_speed	= 1.0f;
 
 /*!
@@ -71,7 +71,9 @@ Attack()
 		if(um.GetFighter())
 		{
 			CBulletManager& bm = CBulletManager::GetInstance();
-			bm.Create(m_Category, BULLET_ID::HOMING, GetCenterPosition(), 90.0f * 3.14f / 180.0f, 2.0f);
+			bm.Create(m_Category, BULLET_ID::HOMING, GetCenterPosition(), DEG_TO_RAD(270.0f), 2.0f);
+			bm.Create(m_Category, BULLET_ID::HOMING, GetCenterPosition(), DEG_TO_RAD(260.0f), 2.0f);
+			bm.Create(m_Category, BULLET_ID::HOMING, GetCenterPosition(), DEG_TO_RAD(280.0f), 2.0f);
 		}
 	}
 }

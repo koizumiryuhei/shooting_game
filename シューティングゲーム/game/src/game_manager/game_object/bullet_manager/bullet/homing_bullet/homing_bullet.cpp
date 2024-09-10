@@ -7,10 +7,10 @@
 const int	CHomingBullet::m_width				= 32;
 const int	CHomingBullet::m_height				= 16;
 const float	CHomingBullet::m_radius				= 8.0f;
-const float CHomingBullet::m_accelerator		= 0.1f;
+const float CHomingBullet::m_accelerator		= 0.06f;
 const float CHomingBullet::m_max_speed			= 10.0f;
-const float	CHomingBullet::m_homing_angle		= 5.0f;
-const int	CHomingBullet::m_max_homing_time	= 60;
+const float	CHomingBullet::m_homing_angle		= 3.8f;
+const int	CHomingBullet::m_max_homing_time	= 80;
 const int	CHomingBullet::m_effect_interval	= 5;
 
 CHomingBullet::CHomingBullet()

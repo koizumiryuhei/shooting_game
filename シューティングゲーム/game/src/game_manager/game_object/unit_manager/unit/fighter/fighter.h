@@ -14,6 +14,8 @@
 #include "vivid.h"
 #include "..\unit.h"
 
+class CFighterOption;
+
 /*!
  *  @class      CFighter
  *
@@ -73,6 +75,7 @@ public:
     bool        CheckHitBullet( IBullet* bullet )override;
 
 private:
+
     /*!
      *  @brief      登場
      */
@@ -132,4 +135,7 @@ private:
     int                             m_NBulletFireTimer;             //!< ノーマル弾発射タイマー
     int                             m_HBulletFireTimer;             //!< ホーミング弾発射タイマー
     int                             m_InvincibleTime;               //!< 無敵時間
+    CFighterOption*                 m_Option1;
+    CFighterOption*                 m_Option2;
+
 };

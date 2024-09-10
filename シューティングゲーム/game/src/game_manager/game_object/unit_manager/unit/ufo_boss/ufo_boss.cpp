@@ -146,9 +146,6 @@ CercleAttack()
 			for (int i = 0; i < bc; ++i)
 			{
 				bm.Create(m_Category, BULLET_ID::BOSS_HOMING, GetCenterPosition(), DEG_TO_RAD(i * radius), 3.0f);
-				//bm.Create(m_Category, BULLET_ID::BOSS, m_Position + vivid::Vector2((float)m_width / 2.0f, 0.0f), DEG_TO_RAD(i * radius), 0.85f);
-				//bm.Create(m_Category, BULLET_ID::BOSS, m_Position + vivid::Vector2((float)m_width / 2.0f, 0.0f), DEG_TO_RAD((i * radius) + (radius / 2.0f)), 1.7f);
-				//bm.Create(m_Category, BULLET_ID::BOSS, m_Position + vivid::Vector2((float)m_width / 2.0f, 0.0f), DEG_TO_RAD(i * radius), 2.55f);
 			}
 		}
 	}
@@ -175,16 +172,12 @@ Dead()
 		CEffectManager& effect = CEffectManager::GetInstance();
 		effect.Delete(EFFECT_ID::BOSS_SPOT_LIGHT);
 		effect.Delete(EFFECT_ID::BOSS_WHITE_EFFECT);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
-		effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+
+		const int destroy = 10;
+
+		for (int i = 0; i < destroy; ++i)
+			effect.Create(EFFECT_ID::BOSS_DESTORY, GetCenterPosition(), 0xffffffff, 0.0f);
+		
 		effect.Create(EFFECT_ID::BOSS_EXPLOSION_RING, GetCenterPosition(), 0xffffffff, 0.0f);
 
 		CSoundManager::GetInstance().Play(SOUND_ID::BOSS_DESTORY, false);
