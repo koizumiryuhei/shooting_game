@@ -195,6 +195,7 @@
     <ClCompile Include="src\game_manager\game_object\ui_manager\fighter_life_gauge\fighter_life_gauge.cpp" />
     <ClCompile Include="src\game_manager\game_object\ui_manager\ui_manager.cpp" />
     <ClCompile Include="src\game_manager\game_object\unit_manager\unit\fighter\fighter.cpp" />
+    <ClCompile Include="src\game_manager\game_object\unit_manager\unit\fighter\fighter_option\fighter_option.cpp" />
     <ClCompile Include="src\game_manager\game_object\unit_manager\unit\ufo_boss\ufo_boss.cpp" />
     <ClCompile Include="src\game_manager\game_object\unit_manager\unit\ufo_large\ufo_large.cpp" />
     <ClCompile Include="src\game_manager\game_object\unit_manager\unit\ufo_middle\ufo_middle.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="src\game_manager\game_object\ui_manager\fighter_life_gauge\fighter_life_gauge.h" />
     <ClInclude Include="src\game_manager\game_object\ui_manager\ui_manager.h" />
     <ClInclude Include="src\game_manager\game_object\unit_manager\unit\fighter\fighter.h" />
+    <ClInclude Include="src\game_manager\game_object\unit_manager\unit\fighter\fighter_option\fighter_option.h" />
     <ClInclude Include="src\game_manager\game_object\unit_manager\unit\ufo_boss\ufo_boss.h" />
     <ClInclude Include="src\game_manager\game_object\unit_manager\unit\ufo_large\ufo_large.h" />
     <ClInclude Include="src\game_manager\game_object\unit_manager\unit\ufo_middle\ufo_middle.h" />

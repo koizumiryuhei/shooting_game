@@ -29,6 +29,7 @@ class CFighter
     : public IUnit
 {
 public:
+
     /*!
      *  @brief      コンストラクタ
      */

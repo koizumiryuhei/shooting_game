@@ -131,7 +131,7 @@ CheckHitBullet( IBullet* bullet )
     {
         CSoundManager::GetInstance().Play(SOUND_ID::FIGHTER_HIT, false);
 
-        CEffectManager::GetInstance().Create(EFFECT_ID::DAMAGE, vivid::Vector2::ZERO, 0xffff0000, 0.0f);
+        CEffectManager::GetInstance().Create(EFFECT_ID::DAMAGE, vivid::Vector2::ZERO, 0xffff008f, 0.0f);
 
         bullet->SetActive( false );
 

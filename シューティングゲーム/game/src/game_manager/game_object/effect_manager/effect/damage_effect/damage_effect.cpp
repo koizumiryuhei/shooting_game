@@ -2,7 +2,7 @@
 
 const int			CDamageEffect::m_width		= 480;
 const int			CDamageEffect::m_height		= 640;
-const int			CDamageEffect::m_fade_speed = 30;
+const int			CDamageEffect::m_fade_speed = 10;
 const std::string	CDamageEffect::m_file_name	= "data/white.png";
 
 CDamageEffect::
