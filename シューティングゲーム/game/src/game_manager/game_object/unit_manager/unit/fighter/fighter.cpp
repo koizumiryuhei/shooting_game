@@ -377,6 +377,7 @@ Fire( void )
     else if (vivid::keyboard::Released(vivid::keyboard::KEY_ID::X) && m_HBulletFireTimer > m_charge_shot_time)
     {
         m_HBulletFireTimer = 0;
+
         bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f, m_height), DEG_TO_RAD(35.0f), 5.0f);
         bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f, m_height), DEG_TO_RAD(37.5f), 4.0f);
         bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f, m_height), DEG_TO_RAD(40.0f), 3.0f);
