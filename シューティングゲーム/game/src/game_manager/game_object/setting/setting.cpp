@@ -52,13 +52,16 @@ Draw(void)
     vivid::DrawTexture("data/ball.png", m_AcceleratorPointPosition, 0xffff0000);
     vivid::DrawTexture("data/ball.png", m_MaxAcceleratorPointPosition, 0xff0000ff);
 
-    float acceRate = (m_AcceleratorPointPosition.x - m_accelerator_var_position.x) / (m_var_width - m_point_width) * 100.0f + 0.01f;
-    float maxAcceRate = (m_MaxAcceleratorPointPosition.x - m_max_accelerator_var_position.x) / (m_var_width - m_point_width) * 100.0f;
-    std::string t_acceRate = std::to_string((int)acceRate);
-    std::string t_maxAcceRate = std::to_string((int)maxAcceRate);
+    //float acceRate = (m_AcceleratorPointPosition.x - m_accelerator_var_position.x) / (m_var_width - m_point_width) * 100.0f + 0.01f;
+    //float maxAcceRate = (m_MaxAcceleratorPointPosition.x - m_max_accelerator_var_position.x) / (m_var_width - m_point_width) * 100.0f;
 
-    vivid::DrawText(25, t_acceRate, { m_accelerator_var_position.x + m_var_width, m_accelerator_var_position.y });
-    vivid::DrawText(25, t_maxAcceRate, { m_max_accelerator_var_position.x + m_var_width, m_max_accelerator_var_position.y });
+    //std::string t_acceRate = std::to_string((int)acceRate);
+    //std::string t_maxAcceRate = std::to_string((int)maxAcceRate);
+
+    vivid::DrawText(25, "‘¬‚¢", { m_accelerator_var_position.x + m_var_width + 5.0f, m_accelerator_var_position.y });
+    vivid::DrawText(25, "‘¬‚¢", { m_max_accelerator_var_position.x + m_var_width + 5.0f, m_max_accelerator_var_position.y });
+    vivid::DrawText(25, "’x‚¢", { m_accelerator_var_position.x - 55.0f, m_accelerator_var_position.y });
+    vivid::DrawText(25, "’x‚¢", { m_max_accelerator_var_position.x - 55.0f, m_max_accelerator_var_position.y });
 }
 
 void 
