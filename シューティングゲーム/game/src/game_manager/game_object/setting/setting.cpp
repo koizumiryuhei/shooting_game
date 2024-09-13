@@ -7,7 +7,7 @@ const int CSetting::m_point_width = 32;
 const int CSetting::m_point_height = 32;
 const vivid::Vector2 CSetting::m_accelerator_var_position = { (float)((vivid::WINDOW_WIDTH - m_var_width) / 2), 200.0f };
 const vivid::Vector2 CSetting::m_max_accelerator_var_position = { (float)((vivid::WINDOW_WIDTH - m_var_width) / 2), 400.0f };
-const vivid::Vector2 CSetting::m_point_anchor = { (float)m_point_width, (float)m_point_height };
+const vivid::Vector2 CSetting::m_point_anchor = { (float)m_point_width / 2.0f, (float)m_point_height / 2.0f };
 const float CSetting::m_point_radius = 30;
 
 CSetting& 
@@ -64,8 +64,8 @@ Setting(void)
 
         float acceUpLimit = container.GetFighterData().m_up_limit_move_accelerator - container.GetFighterData().m_down_limit_move_accelerator;
         float maxAcceUpLimit = container.GetFighterData().m_up_limit_max_move_accelerator - container.GetFighterData().m_down_limit_max_move_accelerator;
-        float acceRate = (m_AcceleratorPointPosition.x - m_accelerator_var_position.x) / (m_var_width - m_point_anchor.x);
-        float maxAcceRate = (m_MaxAcceleratorPointPosition.x - m_max_accelerator_var_position.x) / (m_var_width - m_point_anchor.x);
+        float acceRate = (m_AcceleratorPointPosition.x - m_accelerator_var_position.x) / (m_var_width - m_point_width);
+        float maxAcceRate = (m_MaxAcceleratorPointPosition.x - m_max_accelerator_var_position.x) / (m_var_width - m_point_width);
 
         container.GetFighterData().m_move_accelerator = acceUpLimit * acceRate + container.GetFighterData().m_down_limit_move_accelerator;
         container.GetFighterData().m_max_move_accelerator = maxAcceUpLimit * maxAcceRate + container.GetFighterData().m_down_limit_max_move_accelerator;
@@ -83,11 +83,11 @@ Setting(void)
 
     if (m_SelectAcceleratorPoint)
     {
-        m_AcceleratorPointPosition.x = pos.x - m_point_anchor.x / 2.0f;
+        m_AcceleratorPointPosition.x = pos.x - m_point_anchor.x;
 
-        if (m_AcceleratorPointPosition.x + m_point_anchor.x > m_accelerator_var_position.x + m_var_width)
+        if (m_AcceleratorPointPosition.x + m_point_width > m_accelerator_var_position.x + m_var_width)
         {
-            m_AcceleratorPointPosition.x = m_accelerator_var_position.x + m_var_width - m_point_anchor.x;
+            m_AcceleratorPointPosition.x = m_accelerator_var_position.x + m_var_width - m_point_width;
         }
         else if (m_AcceleratorPointPosition.x < m_accelerator_var_position.x)
         {
@@ -96,11 +96,11 @@ Setting(void)
     }
     else if (m_SelectMaxAcceleratorPoint)
     {
-        m_MaxAcceleratorPointPosition.x = pos.x - m_point_anchor.x / 2.0f;
+        m_MaxAcceleratorPointPosition.x = pos.x - m_point_anchor.x;
 
-        if (m_MaxAcceleratorPointPosition.x + m_point_anchor.x > m_max_accelerator_var_position.x + m_var_width)
+        if (m_MaxAcceleratorPointPosition.x + m_point_width > m_max_accelerator_var_position.x + m_var_width)
         {
-            m_MaxAcceleratorPointPosition.x = m_max_accelerator_var_position.x + m_var_width - m_point_anchor.x;
+            m_MaxAcceleratorPointPosition.x = m_max_accelerator_var_position.x + m_var_width - m_point_width;
         }
         else if (m_MaxAcceleratorPointPosition.x < m_max_accelerator_var_position.x)
         {
@@ -136,6 +136,8 @@ operator=(const CSetting& rhs)
 
 void CSetting::CheckPointCollision(vivid::Vector2 pos)
 {
+    if (m_SelectAcceleratorPoint || m_SelectMaxAcceleratorPoint)return;
+
     vivid::Vector2 vec = pos - m_AcceleratorPointPosition;
 
     float length = sqrt(vec.x * vec.x + vec.y * vec.y);
