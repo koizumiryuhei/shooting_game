@@ -44,11 +44,21 @@ void
 CSetting::
 Draw(void)
 {
+    vivid::DrawText(25, "â¡ë¨íl", { m_accelerator_var_position.x, m_accelerator_var_position.y - 25.0f });
+    vivid::DrawText(25, "ç≈ëÂë¨ìx", { m_max_accelerator_var_position.x, m_max_accelerator_var_position.y - 25.0f });
     vivid::DrawTexture("data/var.png", m_accelerator_var_position);
     vivid::DrawTexture("data/var.png", m_max_accelerator_var_position);
 
     vivid::DrawTexture("data/ball.png", m_AcceleratorPointPosition, 0xffff0000);
     vivid::DrawTexture("data/ball.png", m_MaxAcceleratorPointPosition, 0xff0000ff);
+
+    float acceRate = (m_AcceleratorPointPosition.x - m_accelerator_var_position.x) / (m_var_width - m_point_width) * 100.0f + 0.01f;
+    float maxAcceRate = (m_MaxAcceleratorPointPosition.x - m_max_accelerator_var_position.x) / (m_var_width - m_point_width) * 100.0f;
+    std::string t_acceRate = std::to_string((int)acceRate);
+    std::string t_maxAcceRate = std::to_string((int)maxAcceRate);
+
+    vivid::DrawText(25, t_acceRate, { m_accelerator_var_position.x + m_var_width, m_accelerator_var_position.y });
+    vivid::DrawText(25, t_maxAcceRate, { m_max_accelerator_var_position.x + m_var_width, m_max_accelerator_var_position.y });
 }
 
 void 
@@ -79,7 +89,7 @@ Setting(void)
     pos.x = mouse.x;
     pos.y = mouse.y;
 
-    CheckPointCollision(pos);
+    CheckPointCollision(pos - m_point_anchor);
 
     if (m_SelectAcceleratorPoint)
     {
