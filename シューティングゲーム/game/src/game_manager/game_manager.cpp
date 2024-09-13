@@ -11,6 +11,7 @@
 
 #include "game_manager.h"
 #include "game_object\game_object.h"
+#include "game_object/container/container.h"
 
 /*
  *  インスタンスの取得
@@ -42,6 +43,8 @@ Initialize( void )
 
     // エフェクトマネージャー初期化
     CEffectManager::GetInstance().Initialize();
+
+    CContainer::GetInstance().Initialize();
 }
 
 /*

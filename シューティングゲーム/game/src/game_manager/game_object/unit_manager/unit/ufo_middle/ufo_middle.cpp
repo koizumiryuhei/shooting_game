@@ -6,7 +6,7 @@
 const int	CUfoMiddle::m_width			= 64;
 const int	CUfoMiddle::m_height		= 32;
 const float CUfoMiddle::m_radius		= 32.0f;
-const int	CUfoMiddle::m_max_life		= 20;
+const int	CUfoMiddle::m_max_life		= 24;
 const int	CUfoMiddle::m_fire_interval = 180;
 const float CUfoMiddle::m_move_speed	= 1.0f;
 

@@ -28,8 +28,8 @@ Initialize(const vivid::Vector2& position, unsigned int color, float rotation)
 	int minX = position.x - m_width / 3;
 	int minY = position.y - m_height / 6;
 
-	float x = rand() % maxX + minX;
-	float y = rand() % maxY + minY;
+	float x = (float)(rand() % maxX + minX);
+	float y = (float)(rand() % maxY + minY);
 
 	IEffect::Initialize(position, color, rotation);
 

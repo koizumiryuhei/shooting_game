@@ -74,6 +74,16 @@ public:
      */
     bool        CheckHitBullet( IBullet* bullet )override;
 
+    struct DATA
+    {
+        const float m_up_limit_move_accelerator         = 0.09f;
+        const float m_down_limit_move_accelerator       = 0.01f;
+        const float m_up_limit_max_move_accelerator     = 0.5f;
+        const float m_down_limit_max_move_accelerator   = 0.1f;
+        float m_move_accelerator;
+        float m_max_move_accelerator;
+    };
+
 private:
 
     /*!
@@ -121,8 +131,8 @@ private:
     static const float              m_radius;                       //!< 半径
     static const vivid::Vector2     m_start_position;               //!< 初期位置
     static const float              m_move_friction;                //!< 移動用減速率
-    static const float              m_max_move_accelerator;         //!< 移動時の加速度
-    static const float              m_move_accelerator;             //!< 移動時の加速度
+    //static const float              m_max_move_accelerator;         //!< 移動時の加速度
+    //static const float              m_move_accelerator;             //!< 移動時の加速度
     static const float              m_create_effect_length;         //!< エフェクトを出す基準の大きさ
     static const int                m_max_fire_time;                //!< 発射時間
     static const int                m_max_life;                     //!< 最大ライフ
@@ -130,6 +140,8 @@ private:
     static const int                m_charge_shot_time;             //!< チャージショットタイム
     static const int                m_max_invincible_time;          //!< 無敵時間
     static const int                m_invincible_visible_interval;  //!< 無敵時間中の点滅間隔
+
+    DATA                            m_Data;                         //!< 加速度データ
     vivid::Vector2                  m_Accelerator;                  //!< 加速度
     float                           m_MoveAccelerator;              //!< 移動用加速度
     int                             m_NBulletFireTimer;             //!< ノーマル弾発射タイマー

@@ -169,6 +169,7 @@
     <ClCompile Include="src\game_manager\game_object\bullet_manager\bullet\homing_bullet\homing_bullet.cpp" />
     <ClCompile Include="src\game_manager\game_object\bullet_manager\bullet\normal_bullet\normal_bullet.cpp" />
     <ClCompile Include="src\game_manager\game_object\bullet_manager\bullet_manager.cpp" />
+    <ClCompile Include="src\game_manager\game_object\container\container.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\aura_effect\aura_effect.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\boss_destory_effect\boss_destory_effect.cpp" />
     <ClCompile Include="src\game_manager\game_object\effect_manager\effect\boss_explosion_ring\boss_explosion_ring.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="src\game_manager\game_object\scene_manager\scene\scene.cpp" />
     <ClCompile Include="src\game_manager\game_object\scene_manager\scene\title\title.cpp" />
     <ClCompile Include="src\game_manager\game_object\scene_manager\scene_manager.cpp" />
+    <ClCompile Include="src\game_manager\game_object\setting\setting.cpp" />
     <ClCompile Include="src\game_manager\game_object\sound_manager\sound_manager.cpp" />
     <ClCompile Include="src\game_manager\game_object\space\space.cpp" />
     <ClCompile Include="src\game_manager\game_object\ui_manager\fighter_life_gauge\fighter_life_gauge.cpp" />
@@ -220,6 +222,7 @@
     <ClInclude Include="src\game_manager\game_object\bullet_manager\bullet\homing_bullet\homing_bullet.h" />
     <ClInclude Include="src\game_manager\game_object\bullet_manager\bullet\normal_bullet\normal_bullet.h" />
     <ClInclude Include="src\game_manager\game_object\bullet_manager\bullet_manager.h" />
+    <ClInclude Include="src\game_manager\game_object\container\container.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\aura_effect\aura_effect.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\boss_destory_effect\boss_destory_effect.h" />
     <ClInclude Include="src\game_manager\game_object\effect_manager\effect\boss_explosion_ring\boss_explosion_ring.h" />
@@ -244,6 +247,7 @@
     <ClInclude Include="src\game_manager\game_object\scene_manager\scene\scene_id.h" />
     <ClInclude Include="src\game_manager\game_object\scene_manager\scene\title\title.h" />
     <ClInclude Include="src\game_manager\game_object\scene_manager\scene_manager.h" />
+    <ClInclude Include="src\game_manager\game_object\setting\setting.h" />
     <ClInclude Include="src\game_manager\game_object\sound_manager\sound_manager.h" />
     <ClInclude Include="src\game_manager\game_object\space\space.h" />
     <ClInclude Include="src\game_manager\game_object\ui_manager\fighter_life_gauge\fighter_life_gauge.h" />

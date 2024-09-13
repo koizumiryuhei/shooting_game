@@ -7,13 +7,13 @@
 const int	CUfoBoss::m_width				= 384;
 const int	CUfoBoss::m_height				= 252;
 const float CUfoBoss::m_radius				= 126.0f;
-const int	CUfoBoss::m_max_life = 2;//1999;
+const int	CUfoBoss::m_max_life			= 1999;
 const int	CUfoBoss::m_random_interval		= 15;
 const int	CUfoBoss::m_cercle_interval		= 240;
 const float CUfoBoss::m_move_speed			= 1.0f;
 const float CUfoBoss::m_move_switch_point	= 0.0f;
 const int	CUfoBoss::m_spot_light_interval = 5;
-const int	CUfoBoss::m_creat_aura_interval = 5;
+const int	CUfoBoss::m_creat_aura_interval = 8;
 const int	CUfoBoss::m_delete_time			= 6 * 60;
 
 /*!

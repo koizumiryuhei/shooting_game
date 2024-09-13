@@ -60,6 +60,12 @@ public:
     void        Finalize( void );
 
 private:
+
+    /*!
+     *  @brief      ê›íË
+     */
+    void        Setting();
+
     /*!
      *  @brief  èÛë‘ID
      */
@@ -68,6 +74,7 @@ private:
         WAIT,
         SHINE,
         APPEAR,
+        SETTING,
     };
 
     static const int            m_shine_width;          //!< åıÇÃïù

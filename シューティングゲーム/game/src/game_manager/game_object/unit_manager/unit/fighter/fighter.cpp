@@ -13,19 +13,20 @@
 #include "..\..\..\..\..\utility\utility.h"
 #include "../../../game_object.h"
 #include "fighter_option/fighter_option.h"
+#include "../../../container/container.h"
 
 const int               CFighter::m_width                       = 36;
 const int               CFighter::m_height                      = 36;
 const float             CFighter::m_radius                      = 1.0f;
 const vivid::Vector2    CFighter::m_start_position              = vivid::Vector2( (float)vivid::WINDOW_WIDTH / 2.0f - (float)m_width / 2.0f, (float)vivid::WINDOW_HEIGHT * 1.2f );
 const float             CFighter::m_move_friction               = 0.975f;
-const float             CFighter::m_max_move_accelerator        = 0.25f;
-const float             CFighter::m_move_accelerator            = 0.05f;
+//const float             CFighter::m_max_move_accelerator        = 0.25f;
+//const float             CFighter::m_move_accelerator            = 0.05f;
 const float             CFighter::m_create_effect_length        = 2.5f;
 const int               CFighter::m_max_fire_time               = 10;
 const int               CFighter::m_max_life                    = 5;
 const int               CFighter::m_nbullet_fire_interval       = 10;
-const int               CFighter::m_charge_shot_time            = 60 * 0.5f;
+const int               CFighter::m_charge_shot_time            = 60 * 1.8f;
 const int               CFighter::m_max_invincible_time         = 180;
 const int               CFighter::m_invincible_visible_interval = 4;
 
@@ -63,6 +64,10 @@ Initialize( const vivid::Vector2& position )
 
     IUnit::Initialize( m_start_position );
 
+    CContainer& container = CContainer::GetInstance();
+
+    m_Data.m_move_accelerator = container.GetFighterData().m_move_accelerator;
+    m_Data.m_max_move_accelerator = container.GetFighterData().m_max_move_accelerator;
     m_Accelerator           = vivid::Vector2( 0.0f, -10.0f );
     m_MoveAccelerator       = 0.0f;
     m_AlphaFactor           = 0.0f;
@@ -303,10 +308,10 @@ Control( void )
 
     if(input)
     {
-        m_MoveAccelerator += m_move_accelerator;
+        m_MoveAccelerator += m_Data.m_move_accelerator;
 
-        if( m_MoveAccelerator > m_max_move_accelerator )
-            m_MoveAccelerator = m_max_move_accelerator;
+        if( m_MoveAccelerator > m_Data.m_max_move_accelerator )
+            m_MoveAccelerator = m_Data.m_max_move_accelerator;
     }
     else
     {
@@ -354,24 +359,25 @@ Fire( void )
     // チャージショット
     if (vivid::keyboard::Button(vivid::keyboard::KEY_ID::X))
     {
+        CEffectManager& effect = CEffectManager::GetInstance();
+
         if (++m_HBulletFireTimer > m_charge_shot_time)
         {
-            CEffectManager& effect = CEffectManager::GetInstance();
 
             if (m_HBulletFireTimer % 12 == 0)
                 effect.Create(EFFECT_ID::CHARGE_EFFECT, m_Position, 0xff00afff, 0.0f);
+        }
 
-            if(m_HBulletFireTimer % 8 == 0)
-            {
-                float length = (float)(rand() % 50 + 10);
-                float angle = (float)(rand() % 360);
+        if (m_HBulletFireTimer % 8 == 0)
+        {
+            float length = (float)(rand() % 50 + 10);
+            float angle = (float)(rand() % 360);
 
-                vivid::Vector2 position;
-                position.x = GetCenterPosition().x + cos(angle) * length;
-                position.y = GetCenterPosition().y + sin(angle) * length;
+            vivid::Vector2 position;
+            position.x = GetCenterPosition().x + cos(angle) * length;
+            position.y = GetCenterPosition().y + sin(angle) * length;
 
-                effect.Create(EFFECT_ID::CHARGE_PARTICLE, position, 0xff88aaff, 0.0f);
-            }
+            effect.Create(EFFECT_ID::CHARGE_PARTICLE, position, 0xff88aaff, 0.0f);
         }
     }
     else if (vivid::keyboard::Released(vivid::keyboard::KEY_ID::X) && m_HBulletFireTimer > m_charge_shot_time)
@@ -384,6 +390,10 @@ Fire( void )
         bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f * 2.0f, m_height), DEG_TO_RAD(145.0f), 3.0f);
         bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f * 2.0f, m_height), DEG_TO_RAD(147.5f), 4.0f);
         bm.Create(m_Category, BULLET_ID::HOMING, m_Position + vivid::Vector2(m_width / 3.0f * 2.0f, m_height), DEG_TO_RAD(150.0f), 5.0f);
+    }
+    else
+    {
+        m_HBulletFireTimer = 0;
     }
 }
 

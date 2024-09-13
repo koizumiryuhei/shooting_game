@@ -13,6 +13,7 @@
 #include "..\..\scene_manager.h"
 #include "..\..\..\..\..\utility\utility.h"
 #include "../../../game_object.h"
+#include "../../../setting/setting.h"
 
 const int               CTitle::m_shine_width           = 32;
 const int               CTitle::m_shine_height          = 32;
@@ -75,6 +76,13 @@ Update( void )
                 CSoundManager::GetInstance().Play(SOUND_ID::ZBUTTON, false);
                 m_State = STATE::SHINE;
             }
+            
+            if (vivid::keyboard::Trigger(vivid::keyboard::KEY_ID::S))
+            {
+                CSetting::GetInstance().Initialize();
+
+                m_State = STATE::SETTING;
+            }
         }
         break;
     case STATE::SHINE:
@@ -91,6 +99,16 @@ Update( void )
 
             if( m_ShinePosition.y < -m_shine_height )
                 CSceneManager::GetInstance( ).ChangeScene( SCENE_ID::GAMEMAIN );
+        }
+        break;
+    case STATE::SETTING:
+        {
+            Setting();
+
+            if (vivid::keyboard::Trigger(vivid::keyboard::KEY_ID::Z))
+            {
+                m_State = STATE::WAIT;
+            }
         }
         break;
     }
@@ -129,6 +147,11 @@ Draw( void )
             vivid::DrawTexture( "data\\title_shine.png", m_ShinePosition, 0xffffffff, rect, anchor, scale, m_ShineRotation, vivid::ALPHABLEND::ADD );
         }
         break;
+    case STATE::SETTING:
+        {
+            CSetting::GetInstance().Draw();
+        }
+        break;
     }
 }
 
@@ -139,4 +162,14 @@ void
 CTitle::
 Finalize( void )
 {
+}
+
+/*!
+ *  Ý’è
+ */
+void 
+CTitle::
+Setting()
+{
+    CSetting::GetInstance().Setting();
 }
