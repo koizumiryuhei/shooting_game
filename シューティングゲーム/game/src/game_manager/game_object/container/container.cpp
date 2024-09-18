@@ -15,4 +15,5 @@ Initialize(void)
 {
 	m_Data.m_fighter_data.m_move_accelerator	 = (m_Data.m_fighter_data.m_up_limit_move_accelerator + m_Data.m_fighter_data.m_down_limit_move_accelerator) / 2.0f;
 	m_Data.m_fighter_data.m_max_move_accelerator = (m_Data.m_fighter_data.m_up_limit_max_move_accelerator + m_Data.m_fighter_data.m_down_limit_max_move_accelerator) / 2.0f;
+	m_Data.m_sound_data.m_volume				 = (m_Data.m_sound_data.m_max_volume + m_Data.m_sound_data.m_min_volume) / 2;
 }

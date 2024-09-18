@@ -1134,6 +1134,14 @@ namespace vivid
     void    StopSound(const std::string& file_name);
 
     /*!
+     *  @brief      サウンドのボリューム設定
+     * 
+     *  @param[in]  file_name   ファイル名
+     *  @param[in]  volume      ボリューム(１～２５５)
+     */
+    void    SetSoundVolume(const std::string& file_name, int volume);
+
+    /*!
      *  @brief      vivid::core名前空間
      */
     namespace core

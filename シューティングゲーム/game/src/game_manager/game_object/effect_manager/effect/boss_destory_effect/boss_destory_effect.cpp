@@ -38,7 +38,7 @@ Initialize(const vivid::Vector2& position, unsigned int color, float rotation)
 	m_Position.x -= (float)(m_width / 2);
 	m_Position.y -= (float)(m_height / 2);
 
-	float angle	= RAND_IN_360;
+	float angle	= DEG_TO_RAD(RAND_IN_360);
 	m_Velocity.x = cos(angle) * m_move_speed;
 	m_Velocity.y = sin(angle) * m_move_speed;
 

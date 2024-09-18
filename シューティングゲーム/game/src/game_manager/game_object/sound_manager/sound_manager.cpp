@@ -38,6 +38,14 @@ Play(SOUND_ID id, bool loop)
 	vivid::PlaySound(m_sound_file_names[(int)id], loop);
 }
 
+void 
+CSoundManager::
+SetVolume(int volume)
+{
+	for (int i = 0; i < (int)SOUND_ID::MAX; ++i)
+		vivid::SetSoundVolume(m_sound_file_names[i], volume);
+}
+
 CSoundManager::
 CSoundManager()
 {

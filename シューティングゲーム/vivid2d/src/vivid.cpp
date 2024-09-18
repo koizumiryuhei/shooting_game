@@ -1172,6 +1172,22 @@ StopSound(const std::string& file_name)
 }
 
 /*
+ *  サウンド音量
+ */
+void 
+vivid::
+SetSoundVolume(const std::string& file_name, int volume)
+{
+    // ロード済みのサウンド検索
+    int sound = FindLoadedSound(file_name);
+
+    if (sound == VIVID_DX_ERROR)
+        return;
+
+    ChangeVolumeSoundMem(volume, sound);
+}
+
+/*
  *  更新するフレームカウントの計算
  */
 void

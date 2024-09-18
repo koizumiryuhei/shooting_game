@@ -17,6 +17,8 @@
 
 const int               CTitle::m_shine_width           = 32;
 const int               CTitle::m_shine_height          = 32;
+const int               CTitle::m_setting_width         = 64;
+const int               CTitle::m_setting_height        = 64;
 const int               CTitle::m_shine_time            = 60;
 const int               CTitle::m_blink_time            = 10;
 const float             CTitle::m_shine_rotation_speed  = 10.0f;
@@ -24,6 +26,7 @@ const float             CTitle::m_shine_speed           = -10.0f;
 const vivid::Vector2    CTitle::m_title_positon         = vivid::Vector2( 240.0f - 192.0f, 100.0f );
 const vivid::Vector2    CTitle::m_message_positon       = vivid::Vector2( 240.0f - 64.0f, 320.0f );
 const vivid::Vector2    CTitle::m_copyright_positon     = vivid::Vector2( 480.0f - 286.0f, 640.0f - 13.0f );
+const vivid::Vector2    CTitle::m_setting_position      = vivid::Vector2( vivid::WINDOW_WIDTH - m_setting_width, 0.0f );
 
 /*
  *  コンストラクタ
@@ -77,7 +80,11 @@ Update( void )
                 m_State = STATE::SHINE;
             }
             
-            if (vivid::keyboard::Trigger(vivid::keyboard::KEY_ID::S))
+            vivid::Point mouse = vivid::mouse::GetCursorPos();
+
+            vivid::Vector2 pos = vivid::Vector2( mouse.x, mouse.y );
+
+            if (pos.x > m_setting_position.x && pos.x < m_setting_position.x + m_setting_width && pos.y > m_setting_position.y && pos.y < m_setting_position.y + m_setting_height && vivid::mouse::Trigger(vivid::mouse::BUTTON_ID::LEFT))
             {
                 CSetting::GetInstance().Initialize();
 
@@ -105,8 +112,14 @@ Update( void )
         {
             Setting();
 
-            if (vivid::keyboard::Trigger(vivid::keyboard::KEY_ID::Z))
+            vivid::Point mouse = vivid::mouse::GetCursorPos();
+
+            vivid::Vector2 pos = vivid::Vector2(mouse.x, mouse.y);
+
+            if (pos.x > m_setting_position.x && pos.x < m_setting_position.x + m_setting_width && pos.y > m_setting_position.y && pos.y < m_setting_position.y + m_setting_height && vivid::mouse::Trigger(vivid::mouse::BUTTON_ID::LEFT))
             {
+                CSetting::GetInstance().Initialize();
+
                 m_State = STATE::WAIT;
             }
         }
@@ -132,6 +145,8 @@ Draw( void )
         {
             vivid::DrawTexture( "data\\title.png", m_title_positon );
 
+            vivid::DrawTexture( "data/setting.png", m_setting_position );
+
             if( ( ++m_BlinkTime / m_blink_time ) % 2 == 0 )
                 vivid::DrawTexture( "data\\z_button.png", m_message_positon );
         }
@@ -149,6 +164,8 @@ Draw( void )
         break;
     case STATE::SETTING:
         {
+            vivid::DrawTexture( "data/return.png", m_setting_position );
+
             CSetting::GetInstance().Draw();
         }
         break;

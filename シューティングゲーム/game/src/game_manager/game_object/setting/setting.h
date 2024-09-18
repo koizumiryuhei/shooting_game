@@ -66,12 +66,15 @@ private:
 	static const int			m_point_height;
 	static const vivid::Vector2 m_accelerator_var_position;
 	static const vivid::Vector2 m_max_accelerator_var_position;
+	static const vivid::Vector2 m_volume_var_position;
 	static const vivid::Vector2 m_point_anchor;
 	static const float			m_point_radius;
 
 	vivid::Vector2				m_AcceleratorPointPosition;
 	vivid::Vector2				m_MaxAcceleratorPointPosition;
+	vivid::Vector2				m_VolumePointPosition;
 	bool						m_SelectAcceleratorPoint;
 	bool						m_SelectMaxAcceleratorPoint;
+	bool						m_SelectVolumePoint;
 
 };

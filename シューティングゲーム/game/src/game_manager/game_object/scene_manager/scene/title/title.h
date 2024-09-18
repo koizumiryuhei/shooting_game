@@ -79,6 +79,8 @@ private:
 
     static const int            m_shine_width;          //!< 光の幅
     static const int            m_shine_height;         //!< 光の高さ
+    static const int            m_setting_width;        //!< 設定アイコンの幅
+    static const int            m_setting_height;       //!< 設定アイコンの高さ
     static const int            m_shine_time;           //!< 光る時間
     static const int            m_blink_time;           //!< 点滅時間
     static const float          m_shine_rotation_speed; //!< 光の回転速度
@@ -86,6 +88,7 @@ private:
     static const vivid::Vector2 m_title_positon;        //!< タイトルロゴ位置
     static const vivid::Vector2 m_message_positon;      //!< メッセージの位置
     static const vivid::Vector2 m_copyright_positon;    //!< コピーライトの位置
+    static const vivid::Vector2 m_setting_position;     //!< 設定アイコンの位置
     vivid::Vector2              m_ShinePosition;        //!< 光の位置
     float                       m_ShineRotation;        //!< 光の回転値
     STATE                       m_State;                //!< 状態ID

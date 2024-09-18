@@ -8,6 +8,7 @@
  */
 
 #include "../unit_manager/unit/fighter/fighter.h"
+#include "../sound_manager/sound_manager.h"
 
 class CContainer
 {
@@ -16,6 +17,7 @@ private:
 	struct DATA
 	{
 		CFighter::DATA m_fighter_data;
+		CSoundManager::DATA m_sound_data;
 	};
 
 public:
@@ -36,5 +38,10 @@ public:
 	 *	@brief	ファイターデータ取得
 	 */
 	CFighter::DATA& GetFighterData(void) { return m_Data.m_fighter_data; }
+
+	/*!
+	 *	@brief	サウンドデータ取得
+	 */
+	CSoundManager::DATA& GetSoundData(void) { return m_Data.m_sound_data; }
 
 };

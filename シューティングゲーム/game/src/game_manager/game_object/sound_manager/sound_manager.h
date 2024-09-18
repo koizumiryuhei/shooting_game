@@ -44,6 +44,18 @@ public:
 	 */
 	void Play(SOUND_ID id, bool loop);
 
+	/*!
+	 *	@brief	‰¹—Ê‚ÌƒZƒbƒg
+	 */
+	void SetVolume(int volume);
+
+	struct DATA
+	{
+		const int	m_max_volume = 255;
+		const int	m_min_volume = 0;
+		int			m_volume;
+	};
+
 private:
 
 	/*!
@@ -67,5 +79,7 @@ private:
 	CSoundManager& operator=(const CSoundManager& rhs);
 
 	static const char* m_sound_file_names[(int)SOUND_ID::MAX];
+
+	DATA m_Data;
 
 };

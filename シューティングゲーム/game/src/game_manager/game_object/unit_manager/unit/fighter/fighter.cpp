@@ -371,7 +371,7 @@ Fire( void )
         if (m_HBulletFireTimer % 8 == 0)
         {
             float length = (float)(rand() % 50 + 10);
-            float angle = (float)(rand() % 360);
+            float angle = DEG_TO_RAD((float)(rand() % 360));
 
             vivid::Vector2 position;
             position.x = GetCenterPosition().x + cos(angle) * length;
